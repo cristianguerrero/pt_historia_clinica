@@ -1,0 +1,176 @@
+<div class="menu">
+    <div class="p-grid">
+        <div class="p-col-12">
+            <button pButton type="button" label="Mascotas" routerLink="../mascotas"></button>
+            <button pButton type="button" label="Historia Clinica" routerLink="../historia-clinica"></button>
+            <button pButton type="button" label="Detalles Historia Clinica" routerLink="../detalle-historia-clinica"></button>
+        </div>
+    <!-- <button class="button" (click)="logout()">Logout</button> -->
+    </div>
+</div>
+
+<div class="p-grid">
+    <div class="p-col-6 p-offset-3">
+        <h2 style="text-align: center;">Detalles Historias Clinica</h2>    
+    </div>
+</div>
+
+<div class="p-grid">
+    <div class="container tab p-col-6 p-offset-3">
+        <p-tabView>
+            <p-tabPanel header="Crear Detalle Historia">
+                <div class="p-grid">
+                    <div class="container p-col-12">
+                        <form>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="temperatura">Temperatura:</label><br>
+                                    <input id="float-input" name="temperatura" [(ngModel)]="temperatura" type="text" pInputText>
+                                </div>
+                                <div class="form-group">
+                                    <label for="peso">Peso:</label><br>
+                                    <input id="float-input" name="peso" [(ngModel)]="peso" type="number" pInputText>
+                                </div>
+                                <div class="form-group">
+                                    <label for="frecuenciaCardiaca">Frecuencia Cardiaca:</label><br>
+                                    <input id="float-input" name="frecuenciaCardiaca" [(ngModel)]="frecuenciaCardiaca" type="number" pInputText>
+                                </div>
+                                <div class="form-group">
+                                    <label for="frecuenciaRespiratoria">Frecuencia Respiratoria:</label><br>
+                                    <input id="float-input" name="frecuenciaRespiratoria" [(ngModel)]="frecuenciaRespiratoria" type="number" pInputText>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fechaHora">Fecha Hora:</label><br>
+                                    <p-calendar id="fechaHora" name="fechaHora" [(ngModel)]="fechaHora" dateFormat="yy-mm-dd" hourFormat="24" [ngModelOptions]="{ standalone: true }"></p-calendar>
+                                </div>
+                                <div class="form-group">
+                                    <label for="alimentacion">Alimentacion:</label><br>
+                                    <input id="float-input" name="alimentacion" [(ngModel)]="alimentacion" type="text" pInputText>
+                                </div>
+                                <div class="form-group">
+                                    <label for="habitad">Habitad:</label><br>
+                                    <input id="float-input" name="habitad" [(ngModel)]="habitad" type="text" pInputText>
+                                </div>
+                                <div class="form-group">
+                                    <label for="observacion">Observacion:</label><br>
+                                    <input id="float-input" name="observacion" [(ngModel)]="observacion" type="text" pInputText>
+                                </div>
+                                <div class="form-group">
+                                    <label for="colaboradorId">Colaborador Id:</label><br>
+                                    <input id="float-input" name="colaboradorId" [(ngModel)]="colaboradorId" type="number" pInputText>
+                                </div>
+                                <div class="form-group">
+                                    <label for="historiaClinicaId">Historia Clinica Id:</label><br>
+                                    <input id="float-input" name="historiaClinicaId" [(ngModel)]="historiaClinicaId" type="number" pInputText>
+                                </div>
+                            </div>
+                                <!-- <label for="fechaCreacion">Fecha de Creación:</label><br> -->
+                                    <!-- <p-calendar id="fechaCreacion" name="fechaCreacion" [(ngModel)]="fechaCreacion" dateFormat="yymmdd" [ngModelOptions]="{ standalone: true }"></p-calendar> -->
+                            <br>
+                            <button pButton type="button" label="Crear Detalle Historia Clínica" (click)="createDetalleHistoriaClinica()"></button>
+                        </form>
+                        <br><br>
+                        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+                        <div *ngIf="responseMessage" class="success-message">{{ responseMessage }}</div>
+                    </div>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Consultar Detalle Historias">
+                <div class="p-grid">
+                    <div class="container_con p-col-12">
+                        <p-table [columns]="cols" [value]="detallesHistoriasClinicas">
+                            <ng-template pTemplate="header" let-columns>
+                                <tr>
+                                    <th *ngFor="let col of columns">
+                                        {{col.header}}
+                                    </th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                                <tr>
+                                    <td *ngFor="let col of columns">
+                                        {{rowData[col.field]}}
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Actualizar Detalle Historias">
+                <div class="p-grid">
+                    <div class="container p-col-12">
+                        <form>
+                            <div>
+                                <label for="id">ID Detalle a actualizar:</label><br>
+                                <input id="float-input" name="updateId" [(ngModel)]="updateId" type="number" pInputText>
+                            </div><br>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="temperatura">Temperatura:</label><br>
+                                    <input id="float-input" name="temperatura" [(ngModel)]="temperatura" type="text" pInputText>
+                                </div>
+                                <div class="form-group">
+                                    <label for="peso">Peso:</label><br>
+                                    <input id="float-input" name="peso" [(ngModel)]="peso" type="number" pInputText>
+                                </div>
+                                <div class="form-group">
+                                    <label for="frecuenciaCardiaca">Frecuencia Cardiaca:</label><br>
+                                    <input id="float-input" name="frecuenciaCardiaca" [(ngModel)]="frecuenciaCardiaca" type="number" pInputText>
+                                </div>
+                                <div class="form-group">
+                                    <label for="frecuenciaRespiratoria">Frecuencia Respiratoria:</label><br>
+                                    <input id="float-input" name="frecuenciaRespiratoria" [(ngModel)]="frecuenciaRespiratoria" type="number" pInputText>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fechaHora">Fecha Hora:</label><br>
+                                    <p-calendar id="fechaHora" name="fechaHora" [(ngModel)]="fechaHora" dateFormat="yy-mm-dd" [ngModelOptions]="{ standalone: true }"></p-calendar>
+                                </div>
+                                <div class="form-group">
+                                    <label for="alimentacion">Alimentacion:</label><br>
+                                    <input id="float-input" name="alimentacion" [(ngModel)]="alimentacion" type="text" pInputText>
+                                </div>
+                                <div class="form-group">
+                                    <label for="habitad">Habitad:</label><br>
+                                    <input id="float-input" name="habitad" [(ngModel)]="habitad" type="text" pInputText>
+                                </div>
+                                <div class="form-group">
+                                    <label for="observacion">Observacion:</label><br>
+                                    <input id="float-input" name="observacion" [(ngModel)]="observacion" type="text" pInputText>
+                                </div>
+                                <div class="form-group">
+                                    <label for="colaboradorId">Colaborador Id:</label><br>
+                                    <input id="float-input" name="colaboradorId" [(ngModel)]="colaboradorId" type="number" pInputText>
+                                </div>
+                                <div class="form-group">
+                                    <label for="historiaClinicaId">Historia Clinica Id:</label><br>
+                                    <input id="float-input" name="historiaClinicaId" [(ngModel)]="historiaClinicaId" type="number" pInputText>
+                                </div>
+                            </div>
+                            <br>
+                            <button pButton type="button" label="Actualizar Detalle Historia Clínica" (click)="updateDetalleHistoriaClinica()"></button>
+                        </form>
+                        <br><br>
+                        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+                        <div *ngIf="responseMessage" class="success-message">{{ responseMessage }}</div>
+                    </div>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Eliminar Detalle Historias">
+                <div class="p-grid">
+                    <div class="container p-col-12">
+                        <form>
+                            <label for="id">ID Historia:</label><br>
+                            <input id="float-input" name="deleteId" [(ngModel)]="deleteId" type="number" pInputText>
+                            <br><br>
+                            <button pButton type="button" label="Eliminar Detalle Historia Clínica" (click)="deleteDetalleHistoriaClinica()"></button>
+                        </form>
+                        <br><br>
+                        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+                        <div *ngIf="responseMessage" class="success-message">{{ responseMessage }}</div>
+                    </div>
+                </div>
+            </p-tabPanel>
+        </p-tabView>
+    </div>
+</div>
