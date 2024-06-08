@@ -1,0 +1,77 @@
+<div class="menu">
+    <div class="p-grid">
+        <div class="p-col-12">
+            <button pButton type="button" label="Mascotas" routerLink="../mascotas"></button>
+            <button pButton type="button" label="Historia Clinica" routerLink="../historia-clinica"></button>
+            <button pButton type="button" label="Detalles Historia Clinica" routerLink="../detalle-historia-clinica"></button>
+        </div>
+    <!-- <button class="button" (click)="logout()">Logout</button> -->
+    </div>
+</div>
+
+<div class="p-grid">
+    <div class="p-col-6 p-offset-3">
+        <h2 style="text-align: center;">Mascotas</h2>    
+    </div>
+</div>
+
+<div class="p-grid">
+    <div class="container p-col-6 p-offset-3">
+        <p-tabView>
+            <p-tabPanel header="Crear Mascota">
+                <div class="p-grid">
+                    <div class="container p-col-6 p-offset-3">
+                        <form>
+                                <div>
+                                    <label for="nombre">Nombre:</label><br>
+                                    <input id="float-input" name="nombre" [(ngModel)]="nombre" type="text" pInputText>
+                                </div>
+                                <br>
+                                    <label for="raza">Raza:</label><br>
+                                    <input id="float-input" name="raza" [(ngModel)]="raza" type="text" pInputText>
+                                <br>
+                                <br>
+                                    <label for="usuario">Usuario:</label><br>
+                                    <input id="float-input" name="usuario" [(ngModel)]="usuarioId" type="text" pInputText>
+                                <br>
+                                <br>
+                                    <label for="sexo">Sexo:</label><br>
+                                    <input id="float-input" name="sexo" [(ngModel)]="sexo" type="text" pInputText>
+                                <br><br>
+                                <button pButton type="button" label="Crear Mascota" (click)="createMascotas()"></button>
+                        </form>
+                        <br><br>
+                        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+                        <div *ngIf="responseMessage" class="success-message">{{ responseMessage }}</div>
+                    </div>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Consultar Mascota">
+                <div class="p-grid">
+                    <div class="container_con p-col-12">
+
+                    <p-table [columns]="cols" [value]="mascotas">
+                        <ng-template pTemplate="header" let-columns>
+                            <tr>
+                                <th *ngFor="let col of columns">
+                                    {{col.header}}
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-rowData let-columns="columns">
+                            <tr>
+                                <td *ngFor="let col of columns">
+                                    {{rowData[col.field]}}
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+
+                    </div>
+                </div>
+
+            </p-tabPanel>
+        </p-tabView>
+
+    </div>
+</div>

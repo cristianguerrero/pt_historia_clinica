@@ -1,0 +1,59 @@
+.menu {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    text-align: center;
+}
+.container_con {
+    width: 95%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.form-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.form-group {
+    flex: 1 1 calc(20% - 1rem); /* Ajusta el ancho para que haya 5 elementos por fila */
+}
+
+@media (max-width: 1200px) {
+    .form-group {
+        flex: 1 1 calc(33.33% - 1rem); /* 3 elementos por fila en pantallas medianas */
+    }
+}
+
+@media (max-width: 800px) {
+    .form-group {
+        flex: 1 1 calc(50% - 1rem); /* 2 elementos por fila en pantallas pequeñas */
+    }
+}
+
+@media (max-width: 500px) {
+    .form-group {
+        flex: 1 1 100%; /* 1 elemento por fila en pantallas muy pequeñas */
+    }
+}

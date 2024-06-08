@@ -1,0 +1,116 @@
+<div class="menu">
+    <div class="p-grid">
+        <div class="p-col-12">
+            <button pButton type="button" label="Mascotas" routerLink="../mascotas"></button>
+            <button pButton type="button" label="Historia Clinica" routerLink="../historia-clinica"></button>
+            <button pButton type="button" label="Detalles Historia Clinica" routerLink="../detalle-historia-clinica"></button>
+        </div>
+    <!-- <button class="button" (click)="logout()">Logout</button> -->
+    </div>
+</div>
+
+<div class="p-grid">
+    <div class="p-col-6 p-offset-3">
+        <h2 style="text-align: center;">Historias Clinica</h2>    
+    </div>
+</div>
+
+<div class="p-grid">
+    <div class="container tab p-col-6 p-offset-3">
+        <p-tabView>
+            <p-tabPanel header="Crear Historia">
+                <div class="p-grid">
+                    <div class="container p-col-6 p-offset-3">
+                        <form>
+                                <div>
+                                    <label for="fechaCreacion">Fecha de Creación:</label><br>
+                                    <p-calendar id="fechaCreacion" name="fechaCreacion" [(ngModel)]="fechaCreacion" dateFormat="yymmdd" [ngModelOptions]="{ standalone: true }"></p-calendar>
+                                </div>
+                                <br>
+                                    <label for="mascota">ID Mascota:</label><br>
+                                    <input id="float-input" name="mascotaId" [(ngModel)]="mascotaId" type="number" pInputText>
+                                <br><br>
+                                <button pButton type="button" label="Crear Historia Clínica" (click)="createHistoriaClinica()"></button>
+                        </form>
+                        <br><br>
+                        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+                        <div *ngIf="responseMessage" class="success-message">{{ responseMessage }}</div>
+                    </div>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Consultar Historias">
+                <div class="p-grid">
+                    <div class="container p-col-6 p-offset-3">
+                        <p-table [columns]="cols" [value]="historiasClinicas">
+                            <ng-template pTemplate="header" let-columns>
+                                <tr>
+                                    <th *ngFor="let col of columns">
+                                        {{col.header}}
+                                    </th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                                <tr>
+                                    <td *ngFor="let col of columns">
+                                        {{rowData[col.field]}}
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Actualizar Historias">
+                <div class="p-grid">
+                    <div class="container p-col-6 p-offset-3">
+                        <form>
+                            <div>
+                                <label for="id">ID Historia a actualizar:</label><br>
+                                <input id="float-input" name="updateId" [(ngModel)]="updateId" type="number" pInputText>
+                            </div>
+                            <br>
+                            <div>
+                                <label for="fechaCreacion">Fecha de Creación:</label><br>
+                                <p-calendar id="fechaCreacion" name="fechaCreacion" [(ngModel)]="fechaCreacion" dateFormat="yymmdd" [ngModelOptions]="{ standalone: true }"></p-calendar>
+                            </div>
+                            <br>
+                                <label for="mascota">ID Mascota:</label><br>
+                                <input id="float-input" name="mascotaId" [(ngModel)]="mascotaId" type="number" pInputText>
+                            <br><br>
+                            <button pButton type="button" label="Actualizar Historia Clínica" (click)="updateHistoriaClinica()"></button>
+                        </form>
+                        <br><br>
+                        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+                        <div *ngIf="responseMessage" class="success-message">{{ responseMessage }}</div>
+                    </div>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Eliminar Historias">
+                <div class="p-grid">
+                    <div class="container p-col-6 p-offset-3">
+                        <form>
+                            <label for="id">ID Historia:</label><br>
+                            <input id="float-input" name="deleteId" [(ngModel)]="deleteId" type="number" pInputText>
+                            <br><br>
+                            <button pButton type="button" label="Eliminar Historia Clínica" (click)="deleteHistoriaClinica()"></button>
+                        </form>
+                        <br><br>
+                        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+                        <div *ngIf="responseMessage" class="success-message">{{ responseMessage }}</div>
+                    </div>
+                </div>
+            </p-tabPanel>
+        </p-tabView>
+    </div>
+</div>
+
+  <!-- <ul>
+    <li *ngFor="let historia of historiasClinicas">
+      ID: {{ historia.id }}
+      ID: {{ historia.mascota.nombre }}
+      
+      <button (click)="updateHistoriaClinica(historia.id)">Actualizar</button>
+      <button (click)="deleteHistoriaClinica(historia.id)">Eliminar</button>
+    </li>
+  </ul> -->
+
